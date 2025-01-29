@@ -1,0 +1,137 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4j6atui1n2ou"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_tdjd1"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_0kqvo"]
+action = &"inc"
+
+[sub_resource type="Shortcut" id="Shortcut_cli4f"]
+events = [SubResource("InputEventAction_0kqvo")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wnf33"]
+font_size = 32
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_tdjd1")
+
+[node name="StartButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = -1
+anchor_left = 0.516
+anchor_top = 0.729
+anchor_right = 0.516
+anchor_bottom = 0.729
+offset_left = -101.48
+offset_top = -49.88
+offset_right = 104.52
+offset_bottom = 50.12
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+action_mode = 0
+shortcut = SubResource("Shortcut_cli4f")
+text = "Start"
+
+[node name="TimerLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -87.0
+offset_right = 91.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "0s"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CountLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -44.0
+offset_right = 22.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="DecButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -44.0
+offset_right = -109.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+action_mode = 0
+shortcut = SubResource("Shortcut_cli4f")
+text = "dec"
+
+[node name="IncButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 127.0
+offset_top = -44.0
+offset_right = 275.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+action_mode = 0
+shortcut = SubResource("Shortcut_cli4f")
+text = "inc
+"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="HighscoresLabel" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 30.0
+offset_right = 205.0
+offset_bottom = 171.0
+text = "Highscores:"
+label_settings = SubResource("LabelSettings_wnf33")
+
+[node name="PlayerNameEdit" type="LineEdit" parent="."]
+offset_left = 531.0
+offset_top = 171.0
+offset_right = 784.0
+offset_bottom = 238.0
+theme_override_font_sizes/font_size = 36
+placeholder_text = "your name"
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[connection signal="game_over" from="." to="." method="_on_game_over"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="DecButton" to="." method="_on_dec_button_pressed"]
+[connection signal="pressed" from="IncButton" to="." method="_on_inc_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="text_changed" from="PlayerNameEdit" to="." method="_on_line_edit_text_changed"]
